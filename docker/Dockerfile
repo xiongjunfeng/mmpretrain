@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build 
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+# 添加pip国内源，不然pip install可能很慢甚至失败，需要提前在Dockerfile同级放置包含国内源的pip.conf
+COPY pip.conf /etc/pip.conf
+
 # Install MIM
 RUN pip install openmim
 
